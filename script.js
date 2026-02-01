@@ -16,7 +16,7 @@ function moveNoButton() {
     const btnHeight = noBtn.offsetHeight;
 
     const maxX = window.innerWidth - btnWidth - padding;
-    const maxY = window.innerHeight - btnHeight - padding;
+    const maxY = window.innerHeight - btnHeight - padding - 20;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
@@ -146,7 +146,7 @@ function createHearts() {
 
 // Typing message
 const message = `
-Happy Valentine’s Day, Sharleen ❤️
+Happy Valentine’s Day, Shaleen ❤️
 
 From the day you came into my life,
 everything started feeling right.

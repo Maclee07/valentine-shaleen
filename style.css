@@ -36,10 +36,37 @@ body, html {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* desktop: spaced nicely */
     align-items: center;
     user-select: none;
 }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .container {
+        width: 95vw;
+        height: auto; /* auto height instead of 85vh */
+        padding: 15px;
+        justify-content: center; /* center all vertically */
+        gap: 15px;
+    }
+
+    .buttons {
+        gap: 15px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    #yesBtn, #noBtn {
+        font-size: clamp(18px, 6vw, 22px);
+        padding: clamp(12px, 4vw, 20px) clamp(25px, 5vw, 40px);
+    }
+
+    h1 {
+        font-size: clamp(22px, 8vw, 32px);
+    }
+}
+
 
 /* Headings */
 h1 {
@@ -169,15 +196,6 @@ button {
 
 /* Mobile adjustments */
 @media (max-width: 600px) {
-    .container {
-        width: 95vw;
-        padding: 20px;
-        margin: 0 auto;
-    }
-
-    h1 {
-        font-size: clamp(22px, 8vw, 36px);
-    }
 
     #typingText {
         font-size: clamp(16px, 5vw, 20px);

@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#typingText {
+    max-height: 300px; /* adjust depending on your container size */
+    overflow-y: auto;   /* allow scrolling if text is longer */
+    padding: 5px 10px;
+    margin-bottom: 15px;
+}
+
+/* Main card containers */
+.container {
+    position: relative;
+    z-index: 5; /* above butterflies */
+    background: white;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+    text-align: center;
+    max-width: 90vw;
+    animation: fadeIn 1s ease;
+    #lovePage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* keep heading at top */
+    overflow: hidden;
+    max-height: 90vh; /* container never taller than viewport */
+}
+.gallery {
+    margin-top: 15px;
+    flex-shrink: 0; /* prevents gallery from being pushed out */
+}
+
+}
+
+h1 {
+    color: #e91e63;
+    margin-bottom: 25px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.7;
+    white-space: pre-line;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+button {
+    padding: 15px 35px;
+    border-radius: 30px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: #e91e63;
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.15);
+}
+
+#noBtn {
+    background: #ccc;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Floating celebration effects */
+.effect {
+    position: absolute;
+    font-size: 28px;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+    z-index: 2;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-10vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Persistent butterflies */
+#butterflies {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0; /* behind all content */
+}
+
+.butterfly {
+    position: absolute;
+    font-size: 32px;
+    opacity: 0;
+    animation:
+        fadeIn 2s forwards,
+        floatY ease-in-out infinite,
+        floatX ease-in-out infinite;
+}
+
+@keyframes floatY {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes floatX {
+    0% { margin-left: 0; }
+    50% { margin-left: 20px; }
+    100% { margin-left: 0; }
+}
+
+/* Gallery */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.gallery img {
+    width: 30vw;
+    max-width: 120px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin: 15px;
+    }
+    .gallery img {
+        width: 40vw;
+    }
+}

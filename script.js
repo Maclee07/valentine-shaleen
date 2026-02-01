@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const questionPage = document.getElementById("questionPage");
@@ -97,7 +96,7 @@ function createButterflies() {
 
 // Typing message
 const message = `
-Happy Valentine’s Day, Shaleen ❤️
+Happy Valentine’s Day, Sharleen ❤️
 
 From the day you came into my life,
 everything started feeling right.

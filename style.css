@@ -6,13 +6,14 @@
     touch-action: none;
 }
 
-body {
-    min-height: 100vh;
+body, html {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* prevents dragging/scrolling */
     background: linear-gradient(135deg, #ffe6f0, #ffccd5);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
 }
 
 /* Hide elements with hidden class */
@@ -25,17 +26,18 @@ body {
     position: relative;
     z-index: 5;
     background: rgba(255,255,255,0.95);
-    width: 90vw;
+    width: 95vw;
     max-width: 520px;
-    padding: 25px;
-    margin: 20px auto;
+    height: 85vh; 
+    padding: 20px;
+    margin: 0 auto;
     border-radius: 25px;
     box-shadow: 0 15px 30px rgba(0,0,0,0.25);
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: flex-start;
     user-select: none;
 }
 
@@ -43,7 +45,7 @@ body {
 h1 {
     font-size: clamp(24px, 7vw, 42px);
     color: #e91e63;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 /* Typing wrapper */
@@ -70,10 +72,10 @@ h1 {
 }
 
 button {
-    padding: 22px 50px;
+    padding: clamp(18px, 5vw, 25px) clamp(30px, 6vw, 50px);
     border-radius: 35px;
     border: none;
-    font-size: clamp(18px, 5vw, 24px);
+    font-size: clamp(18px, 6vw, 26px);
     cursor: pointer;
     transition: 0.3s;
     user-select: none;
@@ -91,7 +93,6 @@ button {
 
 #noBtn {
     background: #ccc;
-    pointer-events: none; /* NO button never clickable */
 }
 
 /* Floating effects */
@@ -168,8 +169,8 @@ button {
 @media (max-width: 600px) {
     .container {
         width: 95vw;
-        padding: 25px;
-        margin: 15px auto;
+        padding: 20px;
+        margin: 0 auto;
     }
 
     h1 {

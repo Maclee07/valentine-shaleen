@@ -80,6 +80,8 @@ button {
     transition: 0.3s;
     user-select: none;
     touch-action: none;
+    min-width: 100px;
+    min-height: 50px;
 }
 
 #yesBtn {
@@ -184,6 +186,11 @@ button {
     .gallery img {
         width: 50vw;
         max-width: 150px;
+    }
+
+    /* Make butterflies & flowers bigger */
+    .butterfly, .flower {
+        font-size: 45px !important;
     }
 }
 

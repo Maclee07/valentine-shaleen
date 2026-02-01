@@ -11,10 +11,12 @@ const music = document.getElementById("bgMusic");
 
 // NO button moves dynamically
 function moveNoButton() {
+    const padding = 20;
     const btnWidth = noBtn.offsetWidth;
     const btnHeight = noBtn.offsetHeight;
-    const maxX = window.innerWidth - btnWidth - 10;
-    const maxY = window.innerHeight - btnHeight - 10;
+
+    const maxX = window.innerWidth - btnWidth - padding;
+    const maxY = window.innerHeight - btnHeight - padding;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
@@ -24,11 +26,11 @@ function moveNoButton() {
     noBtn.style.top = `${y}px`;
 }
 
-// NO button triggers
+// NO button events
 noBtn.addEventListener("mouseover", moveNoButton);
 noBtn.addEventListener("touchstart", moveNoButton);
 
-// YES button
+// YES button click
 yesBtn.addEventListener("click", () => {
     music.play();
     questionPage.classList.add("hidden");
@@ -45,8 +47,102 @@ yesBtn.addEventListener("click", () => {
     }, 3000);
 });
 
-// All effect creation functions same as previous version
-// createEffects, createButterflies, createFlowers, createHearts
+// Effects
+function createEffects() {
+    const icons = ["🌸", "💖", "💐", "💕"];
+    for (let i = 0; i < 40; i++) {
+        const el = document.createElement("div");
+        el.className = "effect";
+        el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        el.style.left = Math.random() * 100 + "vw";
+        el.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        effects.appendChild(el);
+    }
+}
+
+// Butterflies
+function createButterflies() {
+    const safeMargin = 30;
+    const count = window.innerWidth < 600 ? 25 : 40;
+    butterflies.innerHTML = "";
+
+    for (let i = 0; i < count; i++) {
+        const b = document.createElement("div");
+        b.className = "butterfly";
+        b.innerHTML = "🦋";
+
+        const x = Math.random() * (window.innerWidth - safeMargin * 2) + safeMargin;
+        const y = Math.random() * (window.innerHeight - safeMargin * 2) + safeMargin;
+
+        b.style.left = x + "px";
+        b.style.top = y + "px";
+
+        const size = window.innerWidth < 600 ? 50 + Math.random() * 30 : 40 + Math.random() * 30;
+        b.style.fontSize = size + "px";
+
+        const durY = 3 + Math.random() * 4;
+        const durX = 4 + Math.random() * 4;
+
+        b.style.animation = `floatY ${durY}s ease-in-out infinite alternate, 
+                             floatX ${durX}s ease-in-out infinite alternate,
+                             fadeIn 2s forwards`;
+
+        butterflies.appendChild(b);
+    }
+}
+
+// Flowers
+function createFlowers() {
+    const safeMargin = 30;
+    const count = window.innerWidth < 600 ? 15 : 25;
+    flowers.innerHTML = "";
+
+    for (let i = 0; i < count; i++) {
+        const f = document.createElement("div");
+        f.className = "flower";
+        const flowerEmojis = ["🌸","🌼","🌺","💐"];
+        f.innerHTML = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+        const x = Math.random() * (window.innerWidth - safeMargin * 2) + safeMargin;
+        const y = Math.random() * (window.innerHeight - safeMargin * 2) + safeMargin;
+
+        f.style.left = x + "px";
+        f.style.top = y + "px";
+
+        const size = window.innerWidth < 600 ? 45 + Math.random() * 20 : 35 + Math.random() * 15;
+        f.style.fontSize = size + "px";
+
+        const durY = 4 + Math.random() * 4;
+        f.style.animation = `floatY ${durY}s ease-in-out infinite alternate, fadeIn 2s forwards`;
+
+        flowers.appendChild(f);
+    }
+}
+
+// Hearts
+function createHearts() {
+    hearts.innerHTML = "";
+    const count = window.innerWidth < 600 ? 20 : 35;
+    for (let i = 0; i < count; i++) {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+
+        const x = Math.random() * (window.innerWidth - 30);
+        const y = Math.random() * (window.innerHeight - 30);
+
+        h.style.left = x + "px";
+        h.style.top = y + "px";
+
+        const size = window.innerWidth < 600 ? 25 + Math.random() * 20 : 20 + Math.random() * 15;
+        h.style.fontSize = size + "px";
+
+        const durY = 3 + Math.random() * 3;
+        h.style.animation = `floatY ${durY}s ease-in-out infinite alternate, fadeIn 2s forwards`;
+
+        hearts.appendChild(h);
+    }
+}
 
 // Typing message
 const message = `
@@ -76,7 +172,7 @@ function typeMessage() {
     }
 }
 
-// Regenerate butterflies, flowers, hearts on resize
+// Regenerate on resize
 window.addEventListener("resize", () => {
     createButterflies();
     createFlowers();

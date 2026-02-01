@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const questionPage = document.getElementById("questionPage");

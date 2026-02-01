@@ -5,11 +5,15 @@ const lovePage = document.getElementById("lovePage");
 const effects = document.getElementById("effects");
 const butterflies = document.getElementById("butterflies");
 const flowers = document.getElementById("flowers");
+const hearts = document.getElementById("hearts");
 const text = document.getElementById("typingText");
 const music = document.getElementById("bgMusic");
 
-// NO button moves dynamically, never clickable
-noBtn.addEventListener("mouseover", () => {
+// NO button moves dynamically
+noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton); // mobile support
+
+function moveNoButton() {
     const padding = 20;
     const btnWidth = noBtn.offsetWidth;
     const btnHeight = noBtn.offsetHeight;
@@ -23,7 +27,7 @@ noBtn.addEventListener("mouseover", () => {
     noBtn.style.position = "fixed";
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
-});
+}
 
 // YES button
 yesBtn.addEventListener("click", () => {
@@ -33,6 +37,7 @@ yesBtn.addEventListener("click", () => {
     createEffects();
     createButterflies();
     createFlowers();
+    createHearts();
 
     setTimeout(() => {
         effects.innerHTML = "";
@@ -57,7 +62,7 @@ function createEffects() {
 // Butterflies
 function createButterflies() {
     const safeMargin = 30;
-    const count = window.innerWidth < 600 ? 30 : 45;
+    const count = window.innerWidth < 600 ? 25 : 40;
     butterflies.innerHTML = "";
 
     for (let i = 0; i < count; i++) {
@@ -88,7 +93,7 @@ function createButterflies() {
 // Flowers
 function createFlowers() {
     const safeMargin = 30;
-    const count = window.innerWidth < 600 ? 20 : 30;
+    const count = window.innerWidth < 600 ? 15 : 25;
     flowers.innerHTML = "";
 
     for (let i = 0; i < count; i++) {
@@ -113,9 +118,34 @@ function createFlowers() {
     }
 }
 
+// Hearts
+function createHearts() {
+    hearts.innerHTML = "";
+    const count = window.innerWidth < 600 ? 20 : 35;
+    for (let i = 0; i < count; i++) {
+        const h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+
+        const x = Math.random() * (window.innerWidth - 30);
+        const y = Math.random() * (window.innerHeight - 30);
+
+        h.style.left = x + "px";
+        h.style.top = y + "px";
+
+        const size = window.innerWidth < 600 ? 25 + Math.random() * 20 : 20 + Math.random() * 15;
+        h.style.fontSize = size + "px";
+
+        const durY = 3 + Math.random() * 3;
+        h.style.animation = `floatY ${durY}s ease-in-out infinite alternate, fadeIn 2s forwards`;
+
+        hearts.appendChild(h);
+    }
+}
+
 // Typing message
 const message = `
-Happy Valentine’s Day, Shaleen ❤️
+Happy Valentine’s Day, Sharleen ❤️
 
 From the day you came into my life,
 everything started feeling right.
@@ -141,8 +171,9 @@ function typeMessage() {
     }
 }
 
-// Regenerate butterflies and flowers on resize
+// Regenerate butterflies, flowers, hearts on resize
 window.addEventListener("resize", () => {
     createButterflies();
     createFlowers();
+    createHearts();
 });

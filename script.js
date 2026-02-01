@@ -146,20 +146,13 @@ function createHearts() {
 
 // Typing message
 const message = `
-Happy Valentine’s Day, Shaleen ❤️
-
-From the day you came into my life,
-everything started feeling right.
-
-Celebrating our 3rd anniversary on 2nd January
-reminded me how strong, real,
-and beautiful our love has become.
+Happy Valentine’s Day, Mamaa ❤️
 
 Thank you for choosing me,
 for loving me,
-and for being my forever person.
+and for being my favorite person.
 
-I choose you — always 💕
+I'll forever choose you My love 💕
 `;
 
 let index = 0;

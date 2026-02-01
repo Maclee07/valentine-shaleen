@@ -8,7 +8,7 @@ const flowers = document.getElementById("flowers");
 const text = document.getElementById("typingText");
 const music = document.getElementById("bgMusic");
 
-// NO button moves dynamically, stays in screen
+// NO button moves dynamically, never clickable
 noBtn.addEventListener("mouseover", () => {
     const padding = 20;
     const btnWidth = noBtn.offsetWidth;
@@ -31,7 +31,6 @@ yesBtn.addEventListener("click", () => {
     questionPage.classList.add("hidden");
 
     createEffects();
-    confettiBlast();
     createButterflies();
     createFlowers();
 
@@ -55,18 +54,11 @@ function createEffects() {
     }
 }
 
-// Confetti
-function confettiBlast() {
-    for (let i = 0; i < 4; i++) {
-        setTimeout(createEffects, i * 400);
-    }
-}
-
 // Butterflies
 function createButterflies() {
     const safeMargin = 30;
-    const count = window.innerWidth < 600 ? 25 : 40; // more butterflies
-    butterflies.innerHTML = ""; // clear old
+    const count = window.innerWidth < 600 ? 30 : 45;
+    butterflies.innerHTML = "";
 
     for (let i = 0; i < count; i++) {
         const b = document.createElement("div");
@@ -79,7 +71,7 @@ function createButterflies() {
         b.style.left = x + "px";
         b.style.top = y + "px";
 
-        const size = window.innerWidth < 600 ? 45 + Math.random() * 25 : 35 + Math.random() * 25;
+        const size = window.innerWidth < 600 ? 50 + Math.random() * 30 : 40 + Math.random() * 30;
         b.style.fontSize = size + "px";
 
         const durY = 3 + Math.random() * 4;
@@ -96,7 +88,7 @@ function createButterflies() {
 // Flowers
 function createFlowers() {
     const safeMargin = 30;
-    const count = window.innerWidth < 600 ? 15 : 25;
+    const count = window.innerWidth < 600 ? 20 : 30;
     flowers.innerHTML = "";
 
     for (let i = 0; i < count; i++) {
@@ -111,7 +103,7 @@ function createFlowers() {
         f.style.left = x + "px";
         f.style.top = y + "px";
 
-        const size = window.innerWidth < 600 ? 40 + Math.random() * 20 : 30 + Math.random() * 15;
+        const size = window.innerWidth < 600 ? 45 + Math.random() * 20 : 35 + Math.random() * 15;
         f.style.fontSize = size + "px";
 
         const durY = 4 + Math.random() * 4;
@@ -144,12 +136,12 @@ function typeMessage() {
     if (index < message.length) {
         text.innerHTML += message.charAt(index);
         index++;
-        text.scrollTop = text.scrollHeight; // auto-scroll inside box
+        text.scrollTop = text.scrollHeight;
         setTimeout(typeMessage, 40);
     }
 }
 
-// Optional: regenerate butterflies and flowers on resize
+// Regenerate butterflies and flowers on resize
 window.addEventListener("resize", () => {
     createButterflies();
     createFlowers();

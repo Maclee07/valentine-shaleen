@@ -6,8 +6,8 @@
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe6f0, #ffccd5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,10 +17,10 @@ body {
 /* Container scaling */
 .container {
     position: relative;
-    z-index: 5; /* above butterflies */
-    background: white;
+    z-index: 5; /* above butterflies and flowers */
+    background: rgba(255,255,255,0.95);
     width: 90vw;      
-    max-width: 500px; 
+    max-width: 520px; 
     padding: 25px;
     margin: 20px auto;
     border-radius: 25px;
@@ -34,16 +34,16 @@ body {
 
 /* Headings */
 h1 {
-    font-size: clamp(18px, 5vw, 32px); /* scaled, valid */
+    font-size: clamp(20px, 6vw, 36px); 
     color: #e91e63;
     margin-bottom: 20px;
 }
 
 /* Paragraph typing area */
 #typingText {
-    font-size: clamp(14px, 4vw, 18px);
-    max-height: 300px; /* keeps text box fixed */
-    overflow-y: auto;   /* scroll if text too long */
+    font-size: clamp(16px, 4.5vw, 20px);
+    max-height: 300px; 
+    overflow-y: auto;   
     padding: 5px 10px;
     margin-bottom: 15px;
     line-height: 1.6;
@@ -59,10 +59,10 @@ h1 {
 }
 
 button {
-    padding: 15px 35px;
+    padding: 18px 40px;
     border-radius: 30px;
     border: none;
-    font-size: 18px;
+    font-size: clamp(16px, 4vw, 20px);
     cursor: pointer;
     transition: 0.3s;
 }
@@ -80,57 +80,62 @@ button {
     background: #ccc;
 }
 
-.hidden {
-    display: none;
-}
-
-/* Floating celebration effects */
+/* Floating effects */
 .effect {
     position: absolute;
-    font-size: 28px;
+    font-size: 32px;
     animation: floatUp linear forwards;
     pointer-events: none;
     z-index: 2;
 }
 
 @keyframes floatUp {
-    from {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 1;
-    }
-    to {
-        transform: translateY(-10vh) rotate(360deg);
-        opacity: 0;
-    }
+    from { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+    to { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
 }
 
-/* Persistent butterflies */
-#butterflies {
+/* Butterflies */
+#butterflies, #flowers {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0; /* behind content */
+    z-index: 0;
+}
+
+.butterfly, .flower {
+    position: absolute;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
 }
 
 .butterfly {
-    position: absolute;
-    opacity: 0;
-    animation:
-        fadeIn 2s forwards,
-        floatY ease-in-out infinite,
-        floatX ease-in-out infinite;
+    animation-name: fadeIn, floatY, floatX;
+    animation-iteration-count: infinite, infinite, infinite;
 }
 
+.flower {
+    animation-name: fadeIn, floatY;
+    animation-iteration-count: infinite, infinite;
+}
+
+/* Up/down animation */
 @keyframes floatY {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-30px); }
+    50% { transform: translateY(-40px); }
     100% { transform: translateY(0); }
 }
 
+/* Side to side movement */
 @keyframes floatX {
     0% { margin-left: 0; }
-    50% { margin-left: 20px; }
+    50% { margin-left: 25px; }
     100% { margin-left: 0; }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Gallery */
@@ -140,12 +145,12 @@ button {
     gap: 12px;
     margin-top: 25px;
     justify-content: center;
-    flex-shrink: 0; /* prevent being pushed */
+    flex-shrink: 0;
 }
 
 .gallery img {
-    width: 30vw;
-    max-width: 120px;
+    width: 35vw;
+    max-width: 130px;
     height: auto;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -156,13 +161,7 @@ button {
     transform: scale(1.1);
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Mobile */
+/* Mobile adjustments */
 @media (max-width: 600px) {
     .container {
         width: 95vw;
@@ -171,15 +170,15 @@ button {
     }
 
     h1 {
-        font-size: clamp(16px, 7vw, 28px);
+        font-size: clamp(18px, 7vw, 32px);
     }
 
     #typingText {
-        font-size: clamp(12px, 5vw, 16px);
+        font-size: clamp(14px, 5vw, 18px);
     }
 
     .gallery img {
-        width: 35vw;
-        max-width: 100px;
+        width: 40vw;
+        max-width: 120px;
     }
 }

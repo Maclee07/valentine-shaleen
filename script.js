@@ -4,6 +4,7 @@ const questionPage = document.getElementById("questionPage");
 const lovePage = document.getElementById("lovePage");
 const effects = document.getElementById("effects");
 const butterflies = document.getElementById("butterflies");
+const flowers = document.getElementById("flowers");
 const text = document.getElementById("typingText");
 const music = document.getElementById("bgMusic");
 
@@ -32,6 +33,7 @@ yesBtn.addEventListener("click", () => {
     createEffects();
     confettiBlast();
     createButterflies();
+    createFlowers();
 
     setTimeout(() => {
         effects.innerHTML = "";
@@ -43,7 +45,7 @@ yesBtn.addEventListener("click", () => {
 // Celebration effects
 function createEffects() {
     const icons = ["🌸", "💖", "💐", "💕"];
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 40; i++) {
         const el = document.createElement("div");
         el.className = "effect";
         el.innerHTML = icons[Math.floor(Math.random() * icons.length)];
@@ -63,26 +65,23 @@ function confettiBlast() {
 // Butterflies
 function createButterflies() {
     const safeMargin = 30;
-    const count = window.innerWidth < 600 ? 20 : 35; // more butterflies
-    butterflies.innerHTML = ""; // clear old butterflies
+    const count = window.innerWidth < 600 ? 25 : 40; // more butterflies
+    butterflies.innerHTML = ""; // clear old
 
     for (let i = 0; i < count; i++) {
         const b = document.createElement("div");
         b.className = "butterfly";
         b.innerHTML = "🦋";
 
-        // random initial position
         const x = Math.random() * (window.innerWidth - safeMargin * 2) + safeMargin;
         const y = Math.random() * (window.innerHeight - safeMargin * 2) + safeMargin;
 
         b.style.left = x + "px";
         b.style.top = y + "px";
 
-        // responsive size
-        const size = window.innerWidth < 600 ? 40 + Math.random() * 20 : 32 + Math.random() * 20;
+        const size = window.innerWidth < 600 ? 45 + Math.random() * 25 : 35 + Math.random() * 25;
         b.style.fontSize = size + "px";
 
-        // animation duration variations
         const durY = 3 + Math.random() * 4;
         const durX = 4 + Math.random() * 4;
 
@@ -94,9 +93,37 @@ function createButterflies() {
     }
 }
 
+// Flowers
+function createFlowers() {
+    const safeMargin = 30;
+    const count = window.innerWidth < 600 ? 15 : 25;
+    flowers.innerHTML = "";
+
+    for (let i = 0; i < count; i++) {
+        const f = document.createElement("div");
+        f.className = "flower";
+        const flowerEmojis = ["🌸","🌼","🌺","💐"];
+        f.innerHTML = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+
+        const x = Math.random() * (window.innerWidth - safeMargin * 2) + safeMargin;
+        const y = Math.random() * (window.innerHeight - safeMargin * 2) + safeMargin;
+
+        f.style.left = x + "px";
+        f.style.top = y + "px";
+
+        const size = window.innerWidth < 600 ? 40 + Math.random() * 20 : 30 + Math.random() * 15;
+        f.style.fontSize = size + "px";
+
+        const durY = 4 + Math.random() * 4;
+        f.style.animation = `floatY ${durY}s ease-in-out infinite alternate, fadeIn 2s forwards`;
+
+        flowers.appendChild(f);
+    }
+}
+
 // Typing message
 const message = `
-Happy Valentine’s Day, Sharleen ❤️
+Happy Valentine’s Day, Shaleen ❤️
 
 From the day you came into my life,
 everything started feeling right.
@@ -122,7 +149,8 @@ function typeMessage() {
     }
 }
 
-// Optional: adjust butterflies when resizing
+// Optional: regenerate butterflies and flowers on resize
 window.addEventListener("resize", () => {
     createButterflies();
+    createFlowers();
 });
